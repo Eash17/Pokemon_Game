@@ -2,9 +2,11 @@ import requests
 import json
 
 def player_choose_pokemon():
-    response = requests.get('https://pokeapi.co/api/v2/pokemon?limit=151')
+    response = requests.get('https://pokeapi.co/api/v2/pokemon?limit=20')
     pokemon_list = json.loads(response.text)['results']
     pokemon_name_list = [pokemon['name'] for pokemon in pokemon_list]
+    print("Here is a list of pokemon")
+    print(pokemon_name_list)
     not_chosen = True
     while not_chosen:
         pokemon_name_user = input("Please enter a pokemon: ").lower()
@@ -22,4 +24,3 @@ def player_choose_pokemon():
     chosen_pokemon = json.loads(response2.text)
     return chosen_pokemon
 
-print(player_choose_pokemon())
