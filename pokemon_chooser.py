@@ -4,6 +4,9 @@ import random
 
 def player_choose_pokemon():
     response = requests.get('https://pokeapi.co/api/v2/pokemon?limit=20')
+    if str(response.status_code)[0] != '2':
+        print("Error in requesting pokemon list")
+        return False
     pokemon_list = json.loads(response.text)['results']
     pokemon_name_list = [pokemon['name'] for pokemon in pokemon_list]
     print("Here is a list of pokemon:")
@@ -24,9 +27,15 @@ def player_choose_pokemon():
     for pokemon in pokemon_list:
         if pokemon['name'] == pokemon_name_user:
             pokemon_url = pokemon['url']
-    print(pokemon_url)
-    response2 = requests.get(pokemon_url)
+    try:
+        response2 = requests.get(pokemon_url)
+    except NameError:
+        print("Hmm, something went wrong with finding your pokemon")
+        return False
+    if str(response2.status_code)[0] != '2':
+        print("Error in requesting pokemon information")
+        return False
     chosen_pokemon = json.loads(response2.text)
+    print(f"Your chosen pokemon is {chosen_pokemon['name'].capitalize()}")
     return chosen_pokemon
 
-player_choose_pokemon()
