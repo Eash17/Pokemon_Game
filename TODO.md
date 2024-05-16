@@ -1,6 +1,7 @@
 # To Do List
 ## pokemon_chooser.py
- - As a user, I want to pick a random pokemon, so I can play the game - KG
+ - As a user, I want to see a list of pokemon so I can choose a pokemon and play the game - DL (done)
+ - As a user, I want to pick a random pokemon, so I can play the game - KG (done)
  - As a user, I want a random pokemon chosen for the cpu, so I have somebody to play against - JO
 
 ## pokemon_battle.py
